@@ -1,0 +1,44 @@
+{
+  "env": "AlohaHandOver",
+  "name": "aloha1",
+  "num_envs": 8192,
+  "steps": 100000000,
+  "evals": 25,
+  "seed": 0,
+  "overrides": "{\"impl\": \"jax\"}",
+  "ppo": {
+    "action_repeat": 1,
+    "batch_size": 512,
+    "discounting": 0.97,
+    "entropy_cost": 0.02,
+    "episode_length": 250,
+    "learning_rate": 0.001,
+    "max_grad_norm": 1.0,
+    "normalize_observations": true,
+    "num_envs": 2048,
+    "num_eval_envs": 128,
+    "num_evals": 25,
+    "num_minibatches": 32,
+    "num_resets_per_eval": 10,
+    "num_timesteps": 100000000,
+    "num_updates_per_batch": 8,
+    "reward_scaling": 1.0,
+    "unroll_length": 15
+  },
+  "network": {
+    "policy_hidden_layer_sizes": [
+      256,
+      256,
+      256
+    ],
+    "policy_obs_key": "state",
+    "value_hidden_layer_sizes": [
+      256,
+      256,
+      256,
+      256,
+      256
+    ],
+    "value_obs_key": "state"
+  }
+}

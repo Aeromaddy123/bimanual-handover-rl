@@ -1,0 +1,13 @@
+Training lineage (each warm-starts the policy of the previous one):
+  v2: 0 -> 52.4M steps, reach+grip (old reward, old bar physics)
+  v3: +21.0M steps from v2 step_52428800, lift reward added
+  v5/v6: from v3 step_20971520, bar condim 4 + 50 g (no pivoting in the fingers)
+  v7/v8: from v6 step_000020971520.pkl, lift measured at the lower bar end + level/hand-down bonus
+  c1: NEW action space (hand x/y/z/twist/grip per arm via IK), trained from scratch
+  c2: hand control, lift 8 / carry 6, lr 5e-4
+  c3: from c1 step_000020971520.pkl, no reward for holding on the floor (airborne bonus, lift 8)
+  c4: same reward, from scratch
+  aloha1: DeepMind Playground AlohaHandOver as published (num_envs 8192, JAX engine)
+  c5: Franka + hand control + DeepMind AlohaHandOver progress reward and PPO settings, from scratch
+  c5 stopped at ~50M steps (still learning to grasp); AlohaHandOver chosen for the video
+  aloha1 stopped by choice at 50.1M steps (41 min): success measured on 256 test pairs
